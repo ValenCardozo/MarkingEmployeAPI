@@ -14,10 +14,11 @@ class Employees extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->primaryKey('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('last_name');
-            $table->foreign('area_id')->reference('a_id')->on('areas');
+            $table->string('areas');
+            /*$table->foreign('area_id')->reference('a_id')->on('areas');*/
             $table->boolean('state');
             $table->timestamps();
         });

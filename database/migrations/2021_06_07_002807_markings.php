@@ -14,8 +14,9 @@ class Markings extends Migration
     public function up()
     {
         Schema::create('markings', function (Blueprint $table) {
-            $table->primaryKey('id');
-            $table->foreign('employee_id')->reference('id')->on('employees');
+            $table->increments('id');
+            /*$table->foreign('employee_id')->reference('id')->on('employees');*/
+            $table->date('marking_employee');
             $table->date('marking_date');
             $table->dateTime('marking_in');
             $table->dateTime('marking_out');
