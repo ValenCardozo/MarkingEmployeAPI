@@ -14,5 +14,15 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return 'API with LUMEN mini-framework';
+});
+
+$router->get('/home', function() use ($router) {
+    return MarkingsController::class;
+});
+
+
+$router->group(['namespace' => 'api', 'prefix' => 'api/v1'], function ($router)
+{
+    $router->post('marking', 'EmployeesMarkingController@createMarkingList');
 });
