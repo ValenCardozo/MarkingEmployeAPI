@@ -1,17 +1,28 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use App\Http\Request;
 use App\Employees;
 use App\Markings;
 
 
 class MarkingsController extends Controller
 {
-    private function createMarkingList()
+    final public function createMarkingList()
     {
-        var_dump('hola');die;
+        $collection = collect([
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+        ]);
+
+        $random = $collection->random(2);
+
+        return $random;
     }
 }

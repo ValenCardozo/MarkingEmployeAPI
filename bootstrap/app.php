@@ -112,4 +112,9 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
+if ($app->environment() !== 'production') {
+  $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+}
+$app->withEloquent(); //Para manejar bases de datos
+
 return $app;
