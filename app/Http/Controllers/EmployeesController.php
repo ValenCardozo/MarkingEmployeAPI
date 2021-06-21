@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Employees;
+use App\Dtos\EmployeeDto;
 use App\Http\Controllers\Controller;
-use App\Http\Request;
 use App\Markings;
 use App\Models\Employees;
 use Illuminate\Http\Request;
@@ -12,27 +11,21 @@ use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
 {
-    public function __construct()
+    public function __construct(Employees $employeesModel)
     {
-        $this->employee = new Employees;
+        $this->employee = $employeesModel;
     }
 
-    private function createEmployee(): void
+    public function createEmployee(Request $request): void
     {
-        $params = [
-            'name'      => 'test',
-            'last_name' => '1',
-            'area'      => 'tech'
+        $employeeDto =  new EmployeeDto($request->header());
 
-        ];
+        $result = $this->employee->createEmployee($employeeDto);
 
-        $this->employee->storeEmployee($params);
-
-        return '200';
-
+        echo json_encode($result);
     }
 
-    private function getEmployee(): type
+    private function getEmployee(): void
     {
 
     }

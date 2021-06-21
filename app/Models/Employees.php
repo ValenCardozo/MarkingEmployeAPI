@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Dtos\EmployeeDto;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Employees extends Model
 {
@@ -13,15 +15,25 @@ class Employees extends Model
      */
 	protected $table = 'employees';
 
-	final public function storeEmployee($request): type
+	final public function createEmployee(EmployeeDto $employeeDto): bool
 	{
 		$employee = new Employees;
 
-		$employee->name      = $request->name;
-		$employee->last_name = $request->last_name;
-		$employee->areas     = $request->areas;
-		$employee->state     = $request->state;
+		$employee->name      = $employeeDto->name;
+		$employee->last_name = $employeeDto->lastName;
+		$employee->areas     = $employeeDto->areas;
+		$employee->state     = $employeeDto->state;
 
-		$employee->save();
+		return $employee->save();
+	}
+
+	final public function getEmployee(): type
+	{
+
+	}
+
+	final public function deleteEmployee(): type
+	{
+
 	}
 }

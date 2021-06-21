@@ -19,4 +19,8 @@ $router->get('/', function () use ($router) {
 
 $router->get('/home', 'MarkingsController@createMarkingList');
 
-$router->post('/employee', 'EmployeesController@createEmployee');
+$router->post('/employee/create', 'EmployeesController@createEmployee');
+
+$router->get('/employee/list', 'EmployeesController@getEmployee');
+
+$router->delete('/employee/delete', 'EmployeesController@deleteEmployee');
