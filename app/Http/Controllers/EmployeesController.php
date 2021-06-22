@@ -20,14 +20,19 @@ class EmployeesController extends Controller
     {
         $employeeDto =  new EmployeeDto($request->header());
 
-        $result = $this->employee->createEmployee($employeeDto);
+        $response = $this->employee->createEmployee($employeeDto);
 
-        echo json_encode($result);
+        echo json_encode($response);
     }
 
-    private function getEmployee(): void
+    private function getEmployee(Request $request): void
     {
+        var_dump($request);die;
+        $employeeId = $request->header('id');
 
+        $response = $this->employee->getEmployee($employeeId);
+
+        echo json_encode($response);
     }
 
     private function listEmployee(): type

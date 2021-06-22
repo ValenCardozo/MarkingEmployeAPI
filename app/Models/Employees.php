@@ -5,15 +5,13 @@ namespace App\Models;
 use App\Dtos\EmployeeDto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Employees extends Model
 {
-	/**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
 	protected $table = 'employees';
+
+	protected $primaryKey = 'id';
 
 	final public function createEmployee(EmployeeDto $employeeDto): bool
 	{
@@ -27,9 +25,13 @@ class Employees extends Model
 		return $employee->save();
 	}
 
-	final public function getEmployee(): type
+	final public function getEmployee($employeeId): type
 	{
+		dd($employeeId);
+		$query = $this->select('*')
+						->where('employee.id', '=', $employeeId);
 
+		return $query->first();
 	}
 
 	final public function deleteEmployee(): type
